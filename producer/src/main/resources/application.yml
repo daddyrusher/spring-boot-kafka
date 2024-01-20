@@ -1,0 +1,6 @@
+api_url: https://jsonplaceholder.typicode.com/
+
+kafka:
+  bootstrapAddress: localhost:9092
+  topic:
+    name: first_topic

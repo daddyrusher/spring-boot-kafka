@@ -1,0 +1,13 @@
+kafka:
+  bootstrapAddress: localhost:9092
+  topic:
+    name: first_topic
+
+spring:
+  data:
+    mongodb:
+      authentication-database: admin
+      host: localhost
+      username: user
+      password: pass
+      port: 27017
