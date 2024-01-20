@@ -28,11 +28,11 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build common module
-      run: mvn -B package --file common/pom.xml
+      run: mvn install --file common/pom.xml
     - name: Build consumer app
-      run: mvn -B package --file consumer/pom.xml
+      run: mvn package --file consumer/pom.xml
     - name: Build producer app
-      run: mvn -B package --file producer/pom.xml
+      run: mvn package --file producer/pom.xml
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     - name: Update dependency graph
