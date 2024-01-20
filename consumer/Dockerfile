@@ -3,6 +3,6 @@ FROM centos
 RUN yum install -y java
 
 VOLUME /tmp
-ADD /target/consumer-1.jar myapp.jar
-RUN sh -c 'touch /myapp.jar'
-ENTRYPOINT ["java", "-Djava.security.egd=file:/dev/./urandom","-jar","/myapp.jar"]
+ADD /target/consumer.jar app.jar
+RUN sh -c 'touch /app.jar'
+ENTRYPOINT ["java", "-jar","/app.jar"]
