@@ -23,6 +23,7 @@ public class KafkaTopicConfig {
     private String topicName;
 
     @Bean
+    @ConditionalOnProperty(prefix = "kafka", name = "local-mode", havingValue = "false")
     public KafkaAdmin kafkaAdmin() {
         return new KafkaAdmin(Map.of(AdminClientConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress));
     }
