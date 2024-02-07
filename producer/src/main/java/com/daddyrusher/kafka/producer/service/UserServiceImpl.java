@@ -15,6 +15,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 public class UserServiceImpl implements UserService {
+    private static final String USERS_RESOURCE = "/users";
     private final RestClient restClient;
 
     @Value("${api_url}")
@@ -24,7 +25,7 @@ public class UserServiceImpl implements UserService {
     public List<Data> getData(Integer limit) {
         var builder = UriComponentsBuilder
                 .fromUriString(apiUrl)
-                .path("/users");
+                .path(USERS_RESOURCE);
 
         return restClient.get()
                 .uri(builder.toUriString())

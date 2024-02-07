@@ -15,7 +15,7 @@ public class MessageListener {
 
     @KafkaListener(topics = "${kafka.topic.name}", containerFactory = "kafkaListenerContainerFactory")
     public void listener(Data data) {
-        log.info("Received message: " + data);
+        log.info("Received message: {}", data);
         dataService.saveMessage(data);
     }
 }

@@ -24,7 +24,6 @@ public class MessageProducer {
                     } else {
                         log.info("Sent Message = {} with offset = {}", data, result.getRecordMetadata().offset());
                     }
-
                 });
     }
 }
