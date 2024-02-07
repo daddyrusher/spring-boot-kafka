@@ -2,21 +2,28 @@ package com.daddyrusher.kafka.producer;
 
 import com.daddyrusher.kafka.producer.config.MessageProducer;
 import com.daddyrusher.kafka.producer.service.UserService;
-import com.daddyrusher.kafka.producer.service.UserServiceImpl;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
-import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.event.EventListener;
 
-@EnableScheduling
 @SpringBootApplication
+@Slf4j
+@RequiredArgsConstructor
 public class ProducerApplication {
+
+    private final MessageProducer producer;
+    private final UserService service;
+
     public static void main(String[] args) {
-        ApplicationContext context = SpringApplication.run(ProducerApplication.class, args);
+        SpringApplication.run(ProducerApplication.class, args);
+    }
 
-        MessageProducer producer = context.getBean(MessageProducer.class);
-        UserService service = context.getBean(UserServiceImpl.class);
-
+    @EventListener(ApplicationReadyEvent.class)
+    public void sendMessages() {
+        log.info("Producer application is ready, sending message to Kafka");
         service.getData(3).forEach(producer::sendMessage);
     }
 }
